@@ -49,5 +49,5 @@ The Fee Page is designed to:
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/vitalswap-team-a-train.git
-cd vitalswap-team-a-train
+git clone https://github.com/kensylee95/a-train.git
+cd a-train
