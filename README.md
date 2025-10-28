@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VitalSwap Fee Page
+
+A responsive, interactive Fee Page for **VitalSwap** that helps users transparently understand fees, simulate swaps, and make informed decisions.
+
+---
+
+## Overview
+
+The Fee Page is designed to:
+
+- Clearly display **VitalSwap fees** for each product and user type.
+- Provide a **calculator** to simulate potential swap outcomes before transactions.
+- Be **intuitive, visually appealing, and technically robust**, combining frontend and backend functionality.
+- Reflect **good product thinking**, solving real customer problems in simple and meaningful ways.
+
+---
+
+## Key Features
+
+1. **Fee Transparency**
+   - Displays detailed fees for all VitalSwap products.
+   - Shows user-specific fees for different account types.
+
+2. **Swap Simulator / Calculator**
+   - Users can input values to estimate transaction fees.
+   - Includes a simulation of foreign exchange (FX) rates to understand cross-currency swaps.
+
+3. **Call-to-Action (CTA) Buttons**
+   - Multiple CTAs linked to each teammate’s **Swaptag (referral codes)** for seamless referrals.
+
+4. **Responsive and Interactive UI**
+   - Built with **ReactJS** for a smooth, mobile-friendly experience.
+   - Interactive components for real-time calculation feedback.
+
+5. **Brand Consistency**
+   - Incorporates **VitalSwap’s branding assets** to maintain trust and visual identity.
+
+---
+
+## Tech Stack
+
+- **Frontend:** Next.Js
+- **Styling:**  CSS Modules
+- **Utilities:** FX rate API (for accurate swap simulations)
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
+1. **Clone the repository**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+git clone https://github.com/yourusername/vitalswap-team-a-train.git
+cd vitalswap-team-a-train
