@@ -24,11 +24,13 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 13px;
+    z-index: 100;
 }
 
 .headingText {
     @include typography.heading-1;
     color: colors.$secondary-color;
+    font-size: clamp(28px, 6vw, 80px);
 }
 
 .subtitle {
@@ -37,6 +39,7 @@
     max-width: 705px;
     color: #000000;
     margin-bottom: 37px;
+    font-size: clamp(14px, 3.6vw, 18px);
 }
 
 .button{
@@ -57,14 +60,48 @@
     bottom: 175px;
 }
 .smilingWoman{
-    z-index: 999;
+    z-index: 100;
     position: absolute;
     right: 164px;
     bottom: 0;
+
 }
 .swapDetails{
     z-index: 999999;
     position: absolute;
     right: 119px;
     bottom: 259px;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px){
+    .container{ height: auto; padding: 48px 32px 0 48px; }
+    .smilingWoman{ right: 64px; max-width: 42vw; height: auto; }
+    .swapDetails{ right: 48px; }
+    .wavyLine{ bottom: 120px; }
+}
+
+/* Stack layout on small screens */
+@media (max-width: 768px){
+    .container{ flex-direction: column; align-items: flex-start; padding: 32px 16px; }
+    .leftContainer{ margin-right: 0; }
+    .subtitle{ max-width: 48ch; }
+    .button{ padding: 16px 28px; border-radius: 12px; }
+    .smilingWoman{ position: static; order: 3; width: 100%; height: auto; max-width: 420px; align-self: center; }
+    .swapDetails{ position: static; order: 2; margin: 16px 0; width: 220px; height: auto; }
+    .wavyLine{ display: none; }
+}
+
+/* Phones */
+@media (max-width: 480px){
+    .container{ padding: 24px 12px; }
+    .button{ padding: 14px 22px; border-radius: 10px; }
+    .subtitle{ font-size: clamp(13px, 4.2vw, 16px); }
+    .smilingWoman{ display: none !important; }
+    .swapDetails{ width: 180px; }
+}
+
+/* Ensure the hero image is hidden on small devices */
+@media (max-width: 600px){
+    .smilingWoman{ display: none !important; }
 }

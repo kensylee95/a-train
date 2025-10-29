@@ -8,13 +8,14 @@ export function HeroSection (){
         <div className={styles.container}>
             <div className={styles.leftContainer}>
                 <div className={styles.flexColumn}>
+                    <br />
                 <span className={styles.headingText}>Transparent Fees.</span>
                     <span className={styles.headingText}>Smarter Swaps.</span>
                     </div>
                     <span className={styles.subtitle}>We keep our fees simple, clear, and easy to understand.</span>
                     <button className={styles.button}>Try for free</button>
             </div>
-            <Image className={styles.smilingWoman} width={654} height={773} src={SmilingWoman} alt='smiling-woman'/>
+            <Image className={styles.smilingWoman} width={554} height={673} src={SmilingWoman} alt='smiling-woman'/>
 
             
             <Image className={styles.swapDetails} src={SwapDetails} height={65} width={252} alt=''/>

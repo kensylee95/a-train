@@ -1,0 +1,193 @@
+@use '../../../../styles/mixins/typography' as typography;
+@use '../../../../styles/variables/colors' as colors;
+
+
+.container {
+  width: 100%;
+  padding: 64px 24px;
+  box-sizing: border-box;
+//   background: linear-gradient(180deg, rgba(14, 20, 31, 0) 0%, rgba(14, 20, 31, 0.04) 100%);
+}
+
+.calculatorSection {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.calculatorImage {
+  width: 100%;
+  height: auto;
+  max-width: 560px;
+}
+/* Preferred: reverse two-column order while keeping grid layout */
+
+.isReversed .leftContent {
+  order: 2;
+}
+
+.isReversed .rightContent {
+  order: 1;
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  font-size: clamp(24px, 5.5vw, 40px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #0e141f;
+}
+
+.subtitle {
+  font-size: clamp(14px, 3.5vw, 16px);
+  line-height: 1.6;
+  color: #5b6473;
+  max-width: 52ch;
+}
+
+.calculateButton {
+  width: fit-content;
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: colors.$tertiary-color;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(26, 115, 232, 0.3);
+  transition: background 0.2s ease, transform 0.05s ease, box-shadow 0.2s ease;
+}
+
+.useGoldBG{
+    background: colors.$primary-color;
+    color: colors.$secondary-color;
+}
+
+.calculateButton:hover {
+  background: #1666cd;
+  box-shadow: 0 10px 22px rgba(26, 115, 232, 0.35);
+}
+
+.calculateButton:active {
+  transform: translateY(1px);
+}
+
+.rightContent {
+  display: flex;
+  justify-content: center;
+}
+
+.calculatorCard {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  border: 1px solid #e8ecf2;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 24px rgba(14, 20, 31, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.imagePlaceholder {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 16 / 9;
+  background: #f3f6fa;
+  border: 1px solid #eef2f7;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.inputChip,
+.currencyChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #e4e9f0;
+  background: #f9fbfd;
+  color: #2e3a4b;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.inputIcon,
+.menuIcon {
+  width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #e7f0fe;
+  color: #1a73e8;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .calculatorSection {
+    grid-template-columns: 1fr;
+  }
+
+  .rightContent {
+    order: -1;
+  }
+
+  /* On mobile, keep image/content stacking consistent */
+  .isReversed .leftContent {
+    order: 2;
+  }
+
+  .isReversed .rightContent {
+    order: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 40px 16px;
+  }
+
+  .calculatorImage { max-width: 440px; }
+
+  .heading { font-size: clamp(22px, 7vw, 28px); }
+
+  .subtitle { font-size: clamp(13px, 4vw, 14px); }
+
+  .calculateButton { font-size: 14px; padding: 10px 16px; }
+
+  .calculatorCard {
+    padding: 12px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .container { padding: 32px 12px; }
+  .heading { font-size: 20px; }
+  .subtitle { font-size: 13px; }
+  .calculateButton { font-size: 13px; padding: 9px 14px; }
+}
+
+

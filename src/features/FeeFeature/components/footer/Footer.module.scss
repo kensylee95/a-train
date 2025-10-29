@@ -1,0 +1,131 @@
+@use '../../../../styles/mixins/typography' as typography;
+@use '../../../../styles/variables/colors' as colors;
+
+.container{
+    width: 100%;
+ 
+}
+
+.ctaSection{
+    padding: 72px 16px 56px 16px;
+    text-align: center;
+    height: 600px;
+    background: radial-gradient(circle at 50% 120%, rgba(0,64,173,0.06) 0%, rgba(0,64,173,0.0) 60%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ctaContainer{ margin-inline: auto; }
+
+.heading{
+    @include typography.heading-5;
+    color: colors.$secondary-color;
+    margin-bottom: 8px;
+    font-size: clamp(24px, 5vw, 64px);
+}
+
+.subheading{
+    @include typography.title-2;
+    color: rgba(27,31,40,0.7);
+    margin-bottom: 24px;
+    font-size: clamp(14px, 3.8vw, 18px);
+}
+
+.cta{
+    @include typography.title-2;
+    background: colors.$secondary-color;
+    color: colors.$app-gray;
+    border: none;
+    padding: 24px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: clamp(14px, 4vw, 18px);
+}
+
+.linksSection{
+    padding: 32px 16px 56px 16px;
+    max-width: 1200px;
+    margin-inline: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+}
+
+.brandRow{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.logoCircle{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: colors.$secondary-color;
+}
+
+.brandName{
+    @include typography.title-2;
+    color: colors.$secondary-color;
+}
+
+.brandColumn{ flex-shrink: 0; min-width: 180px; }
+
+.columns{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px;
+
+}
+.socials{ display: flex; gap: 5px; }
+.socialLink{ display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; color: rgba(27,31,40,0.6); border-radius: 50%; transition: background 0.2s ease, color 0.2s ease; }
+.socialLink:hover{ background: #f5f7fb; color: colors.$tertiary-color; }
+
+@media (max-width: 800px){
+    .columns{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .linksSection{ flex-direction: column; align-items: center; text-align: center; gap: 32px; }
+    .brandColumn{ min-width: auto; }
+}
+
+@media (max-width: 600px){
+    .ctaSection{ height: auto; padding: 56px 16px 40px 16px; gap: 16px; }
+    .cta{ padding: 16px 20px; }
+    .columns{ grid-template-columns: 1fr; gap: 20px; }
+    .socialLink{ width: 36px; height: 36px; }
+}
+
+@media (max-width: 400px){
+    .linksSection{ padding: 24px 12px 40px 12px; }
+    .ctaSection{ padding: 48px 12px 32px 12px; }
+}
+
+@media (max-width: 480px){
+    .heading{ font-size: clamp(20px, 6vw, 26px); }
+    .subheading{ font-size: clamp(13px, 4.2vw, 16px); }
+    .cta{ font-size: 13px; padding: 14px 18px; }
+}
+
+.col{
+    gap: 10px;
+}
+
+.colTitle{
+    @include typography.title-2;
+    color: colors.$secondary-color;
+    margin-bottom: 10px;
+}
+
+.link{
+    @include typography.title-2-bold;
+    display: block;
+    color: rgba(27,31,40,0.7);
+    text-decoration: none;
+    margin: 8px 0;
+}
+
+

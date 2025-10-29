@@ -1,0 +1,129 @@
+@use '../../../../styles/mixins/typography' as typography;
+@use '../../../../styles/variables/colors' as colors;
+
+.card {
+    background-color: colors.$card-gray;
+    border-radius: 20px;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    color: colors.$secondary-color;
+    min-width: 400px;
+    max-width: 400px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+.planType {
+    @include typography.title-2;
+    color: colors.$secondary-color;
+    margin-bottom: 16px;
+    text-transform: capitalize;
+}
+
+.pricingSection {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.price {
+    @include typography.heading-3;
+    color: colors.$secondary-color;
+    line-height: 1;
+}
+
+.duration {
+    @include typography.title-2;
+    color: colors.$secondary-color;
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+
+.targetAudience {
+    @include typography.body-regular;
+    color: colors.$card-gray2;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.button {
+    @include typography.title-2-bold;
+    // padding: 18px 28px;
+    border-radius: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    color: colors.$secondary-color;
+    border: 1.5px solid colors.$card-grayBorder;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 28px;
+    // font-weight:bold !important;
+
+    &:hover {
+        background-color: rgba(230, 237, 247, 0.08);
+    }
+}
+
+.pro .button {
+    background-color: colors.$card-pro-button;
+    border-color: colors.$secondary-color;
+    color: #E6EDF7;
+
+    &:hover {
+        background-color: #232a36;
+    }
+}
+
+.pro{
+    background-color: #0040AD29;
+    border: 1.5px solid colors.$card-pro-button;
+
+}
+
+
+.separator {
+    width: 100%;
+    height: 1.5px;
+    background-color: #49576E33;
+    margin-bottom: 28px;
+}
+
+.featuresList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.checkIcon{
+    width: 24px;
+    height: 24px;
+    background: url(/check.svg) no-repeat center;
+    background-size: contain;
+}
+
+.featureItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.checkmark {
+    @include typography.title-2;
+    color: #E6EDF7;
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1.2;
+}
+
+.featureText {
+    @include typography.title-2;
+    color: colors.$card-gray2;
+    font-weight: 400;
+    line-height: 1.4;
+}
+

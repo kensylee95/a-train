@@ -1,5 +1,6 @@
-@use "../../../../styles/mixins/typography" as typography;
-@use "../../../../styles/colors" as colors;
+@use '../../../../styles/mixins/typography' as typography;
+@use '../../../../styles/variables/colors' as colors;
+
 
 .container{
     padding: 52px 48px;
@@ -8,16 +9,112 @@
 
 .heading{
     @include typography.heading-3;
-    color: colors.$secondaryColor;
+    color: colors.$secondary-color;
     margin-bottom: 52px;
+    text-align: center;
+    width: 100%;
+    font-size: clamp(24px, 5.5vw, 36px);
 }
 .testimonial{
-    display: flex;
-    gap: 72px;
-    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.track{
+    display: inline-flex;
+    gap: 16px;
+    width: max-content;
+    will-change: transform;
+    animation: marquee 28s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .track{ animation: none; }
 }
 .testimonialItem{
-    width: 224px;
-    height: 106px;
-    border-radius: 20px;
+    background-color: #DDE6F2; /* light card like mock */
+    border-radius: 28px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 288px;
+    flex: 0 0 288px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.headerRow{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.avatar{
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background: linear-gradient(0deg, rgba(255,255,255,0.2), rgba(255,255,255,0.2)), #D9D9D9;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.meta{
+    display: flex;
+    flex-direction: column;
+}
+
+.name{
+    @include typography.title-2;
+    color: colors.$secondary-color;
+    margin-bottom: 20px;
+}
+
+.title{
+    @include typography.title-2;
+    color: rgba(27,31,40,0.6);
+}
+
+.contentRow{
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.divider{
+    height: 120px;
+    width: 3px;
+    background: rgba(27,31,40,0.2);
+    border-radius: 2px;
+    // margin-left: 10px
+}
+
+.quote{
+    @include typography.title-2;
+    color: colors.$secondary-color;
+    line-height: 130%;
+}
+
+@media (max-width: 768px){
+    .container{ padding: 40px 16px; }
+    .track{ gap: 12px; }
+    .testimonialItem{ max-width: 240px; flex: 0 0 240px; padding: 22px; border-radius: 22px; }
+    .contentRow{ gap: 16px; }
+    .divider{ height: 80px; }
+    .name{ font-size: clamp(16px, 3.5vw, 18px); }
+    .title{ font-size: clamp(14px, 3.2vw, 16px); }
+    .quote{ font-size: clamp(14px, 3.4vw, 16px); }
+}
+
+@media (max-width: 480px){
+    .container{ padding: 32px 12px; }
+    .track{ gap: 10px; }
+    .testimonialItem{ max-width: 200px; flex: 0 0 200px; padding: 18px; border-radius: 18px; }
+    .avatar{ width: 40px; height: 40px; }
+    .contentRow{ gap: 12px; }
+    .divider{ display: none; }
+    .heading{ font-size: clamp(20px, 7vw, 28px); }
 }

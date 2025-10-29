@@ -1,0 +1,156 @@
+@use '../../../../styles/mixins/typography' as typography;
+@use '../../../../styles/variables/colors' as colors;
+
+.container{
+    min-height: 500px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 100px;
+    // background: colors.$app-gray;
+    max-width: 1360px;
+    margin-inline: auto;
+}
+
+.pricingHeading{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: colors.$secondary-color
+}
+
+.pricingHeading h1{
+    @include typography.heading-5;
+    font-size: clamp(24px, 5.5vw, 32px);
+}
+
+.tableScroll{
+    overflow-x: auto;
+    overflow-y: hidden;
+    width: 100%;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;
+    margin-top: 32px;
+}
+
+.table{
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border: 1.5px solid colors.$card-grayBorder;
+}
+
+.table thead th{
+    border: 1.5px solid colors.$card-grayBorder;
+    padding: 16px 16px 24px 16px;
+}
+
+.planHeader{
+    @include typography.title-2;
+    color: colors.$secondary-color
+;
+    opacity: 0.9;
+    text-align: center;
+}
+
+.planPrice{
+    @include typography.heading-2;
+    color: colors.$secondary-color;
+    text-align: center;
+    margin: 8px 0 12px 0;
+    font-size: clamp(20px, 6vw, 36px);
+}
+
+.cta{
+    @include typography.title-2;
+    width: 100%;
+    padding: 14px 20px;
+    min-height: 36px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: transparent;
+    color: colors.$secondary-color;
+    cursor: pointer;
+}
+
+.ctaPrimary{
+    background: colors.$primary-color;
+    border-color: colors.$primary-color;
+    color: colors.$tertiary-color;
+}
+
+.ctaGhost{
+    background: transparent;
+    border: 1.5px solid colors.$card-grayBorder;
+}
+
+.table tbody td, .table thead th{
+    // border-bottom: 1px solid rgba(255,255,255,0.08);
+    border: 1.5px solid colors.$card-grayBorder;
+
+}
+
+.rowLabel{
+    @include typography.title-2;
+    color: colors.$secondary-color;
+    text-align: left;
+    padding: 20px 16px;
+    width: 40%;
+    white-space: nowrap;
+}
+
+.cell{
+    @include typography.title-2;
+    color: colors.$secondary-color;
+    text-align: center;
+    padding: 20px 16px;
+}
+
+.check{
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+}
+
+/* Sticky first column for better readability while scrolling */
+.stickyCol{
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    // background: colors.$tertiary-color;
+}
+
+.stickyHead{
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    // background: colors.$tertiary-color;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px){
+    .container{ margin-top: 60px; }
+    .table{ min-width: 640px; width: max-content; display: block; }
+    .tableScroll{ margin-top: 24px; }
+    .rowLabel, .cell{ padding: 16px 12px; }
+    .planHeader{ font-size: clamp(14px, 3.4vw, 16px); }
+    .planPrice{ font-size: clamp(18px, 5.4vw, 28px); }
+    .cta{ padding: 12px 16px; min-height: 34px; border-radius: 20px; font-size: 14px; }
+    .check{ width: 18px; height: 18px; }
+    .stickyCol, .stickyHead{ background: colors.$app-gray; }
+}
+
+@media (max-width: 480px){
+    .container{ margin-top: 40px; padding-left: 4px; padding-right: 4px; }
+    .table{ min-width: 560px; width: max-content; display: block; }
+    .rowLabel{ width: 48%; white-space: normal; }
+    .planHeader{ font-size: clamp(13px, 3.8vw, 15px); }
+    .planPrice{ font-size: clamp(16px, 6vw, 24px); }
+    .cell span{ font-size: 14px; }
+    .cta{ font-size: 13px; padding: 10px 14px; min-height: 32px; border-radius: 18px; }
+    .tableScroll{ padding-bottom: 6px; }
+}
