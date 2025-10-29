@@ -16,7 +16,7 @@ export function Calculator(){
                 </div>
 
         </div>
-        
+
         <div className={styles.container2}>
             <Image src={image2} alt=''/>
             <div className={styles.rightSide2}>
@@ -24,7 +24,7 @@ export function Calculator(){
                     FX Rate Simulation
                 </div>
                 <span>View recent exchange rate trends and insights.</span>
-            <button> Try out</button>
+            <button  className={styles.button}> Try out</button>
             </div>
         </div>
         </>

@@ -3,9 +3,25 @@
 
 .container {
     display: flex;
+    align-items: center;
     width: 100%;
     padding: 24px 60px;
 
+    /* ✅ Tablet */
+    @media (max-width: 1024px) {
+        padding: 20px 40px;
+        gap: 20px;
+    }
+
+    /* ✅ Mobile */
+    @media (max-width: 768px) {
+        padding: 18px 24px;
+    }
+
+    /* ✅ Small Mobile */
+    @media (max-width: 480px) {
+        padding: 16px 16px;
+    }
 }
 
 .logo {
@@ -15,12 +31,30 @@
     gap: 17px;
     align-items: center;
     margin-right: 118px;
+
+    @media (max-width: 1024px) {
+        margin-right: 40px;
+    }
+
+    @media (max-width: 768px) {
+        margin-right: 10px;
+    }
 }
 
 .navigation {
     display: flex;
     align-items: center;
     gap: 40px;
+
+    /* ✅ Tablet */
+    @media (max-width: 1024px) {
+        gap: 24px;
+    }
+
+    /* ✅ Mobile collapses navigation — optional */
+    @media (max-width: 768px) {
+        display: none; // hide menu for mobile hamburger
+    }
 }
 
 .navItem {
@@ -29,26 +63,60 @@
     align-items: center;
     gap: 2px;
     color: colors.$secondary-color;
+
+    @media (max-width: 1024px) {
+        font-size: 15px;
+    }
 }
 
-.ctaWrapper{
+.ctaWrapper {
     margin-left: auto;
     display: flex;
     align-items: center;
     gap: 40px;
+
+    @media (max-width: 1024px) {
+        gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+        gap: 16px;
+    }
 }
-.ctaButton{
+
+.ctaButton {
     @include typography.title-2-bold;
     height: 40px;
     padding: 10px 20px;
     border-radius: 16px;
     background: colors.$tertiary-color;
     color: colors.$app-gray;
-    border: none
+    border: none;
+
+    @media (max-width: 1024px) {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+        height: 36px;
+        padding: 6px 14px;
+        border-radius: 12px;
+        font-size: 13px;
+    }
 }
-.textButton{
+
+.textButton {
     @include typography.title-2-bold;
     color: colors.$secondary-color;
     background: none;
     border: none;
+
+    @media (max-width: 1024px) {
+        font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 13px;
+    }
 }
