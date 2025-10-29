@@ -1,0 +1,54 @@
+@use "../../../../styles/variables/colors" as colors;
+@use "../../../../styles/mixins/typography" as typography;
+
+.container {
+    display: flex;
+    width: 100%;
+    padding: 24px 60px;
+
+}
+
+.logo {
+    @include typography.title-2-bold;
+    color: colors.$secondary-color;
+    display: flex;
+    gap: 17px;
+    align-items: center;
+    margin-right: 118px;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.navItem {
+    @include typography.title-2-bold;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: colors.$secondary-color;
+}
+
+.ctaWrapper{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.ctaButton{
+    @include typography.title-2-bold;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 16px;
+    background: colors.$tertiary-color;
+    color: colors.$app-gray;
+    border: none
+}
+.textButton{
+    @include typography.title-2-bold;
+    color: colors.$secondary-color;
+    background: none;
+    border: none;
+}

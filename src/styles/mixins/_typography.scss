@@ -43,21 +43,21 @@
 }
 
 
-@mixin title-3-{
-  font-size: 28;
-  line-height: 32;
+@mixin title-3{
+  font-size: 28px;
+  line-height: 32px;
   font-weight: 700;
 }
 
 @mixin title-2-bold {
-  font-size: 15;
-  line-height: 20;
+  font-size: 15px;
+  line-height: 20px;
   font-weight: 500;
 }
 
 @mixin title-3-bold {
   font-size: 24;
-  line-height: 24;
+  line-height: 24%;
   font-weight: 500;
 }
 
@@ -72,8 +72,8 @@
 @mixin body-light {
     font-size: 28px;
   font-style: normal;
-  font-weight: 100;
-  line-height: 49%;
+  font-weight: 300;
+  line-height: 140%;
 }
 
 

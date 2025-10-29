@@ -1,0 +1,70 @@
+@use '../../../../styles/mixins/typography' as typography;
+@use '../../../../styles/variables/colors' as colors;
+
+.container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 773px;
+    padding-left: 114px;
+    padding-top: 53px;
+    background: radial-gradient(circle,
+            colors.$app-gray 31%,
+            rgba(0, 64, 173, 0.16) 100%);
+}
+
+.leftContainer {
+    margin-right: auto;
+    text-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 13px;
+}
+
+.headingText {
+    @include typography.heading-1;
+    color: colors.$secondary-color;
+}
+
+.subtitle {
+    @include typography.body-light;
+    letter-spacing: -2.5%; 
+    max-width: 705px;
+    color: #000000;
+    margin-bottom: 37px;
+}
+
+.button{
+    @include typography.title-3-bold;
+    padding: 23px 48px;
+    border-radius: 16px;
+    width: fit-content;
+    background-color: colors.$primary-color;
+    color: colors.$tertiary-color;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.wavyLine{
+    z-index: 99;
+    position: absolute;
+    right: 0;
+    bottom: 175px;
+}
+.smilingWoman{
+    z-index: 999;
+    position: absolute;
+    right: 164px;
+    bottom: 0;
+}
+.swapDetails{
+    z-index: 999999;
+    position: absolute;
+    right: 119px;
+    bottom: 259px;
+}
