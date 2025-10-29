@@ -84,9 +84,22 @@
   line-height: 16%;
 }
 
+@mixin body-mid {
+    font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20%;
+}
+
 @mixin body-semibold {
     font-size: 24px;
   font-style: normal;
   font-weight: 100;
   line-height: 32%;
+}
+@mixin body {
+    font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
 }

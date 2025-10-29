@@ -1,8 +1,7 @@
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import styles from './TopNav.module.scss'
 import Logo from './assets/logo.png'
 import AngleDown from './assets/chevron-down.png'
-
 
 export function TopNav(){
     const navItems:string[] = ["Home", "Features", "Pricing", "Contact"];

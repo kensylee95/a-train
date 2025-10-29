@@ -1,23 +1,79 @@
 @use "../../../../styles/mixins/typography" as typography;
-@use "../../../../styles/colors" as colors;
+@use "../../../../styles/variables/colors" as colors;
 
 .container{
+    display: flex;
+    flex-direction: column;
+    margin-inline: 114px;
+    margin-top: 162px;
     padding: 52px 48px;
-    background-color: colors.$app-gray;
+    background: colors.$app-gray;
 }
 
 .heading{
     @include typography.heading-3;
-    color: colors.$secondaryColor;
+    color: colors.$secondary-color;
+    text-align: center;
+    width: 100%;
     margin-bottom: 52px;
 }
-.testimonial{
+.testimonials{
+    overflow-x: auto;
+    scroll-behavior: smooth;
     display: flex;
     gap: 72px;
     width: 100%;
 }
-.testimonialItem{
-    width: 224px;
-    height: 106px;
+.testimonials::-webkit-scrollbar{
+    display: none;
+}
+.testimony{
+    display: flex;
+    flex-direction: column;
+    height: 238px;
+    padding: 32px;
     border-radius: 20px;
+    gap:20px;
+    background: rgba(73, 87,110, 0.2);
+}
+
+.user{
+    display: flex;
+    gap: 2px;
+}
+.roundedImg{
+    width: 48px;
+    height: 48px;
+    border-radius: 99px;
+}
+.userdetails{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.name{
+@include typography.title-2-bold;
+color: colors.$secondary-color;
+
+}
+.subtitle{
+@include typography.body;
+color: rgba(20,30,46, 0.62);
+}
+
+.body{
+    display: flex;
+    gap:12px;
+}
+.bar{
+    display: inline-block;
+    width: 1px;
+    height: 96px;
+    background: rgba(73, 87,110, 0.2);
+    margin: 0 24px;
+}
+.message{
+    @include typography.body;
+    color: colors.$secondary-color;
 }
