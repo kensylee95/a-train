@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import CalculatorMockup from "@/components/CalculatorMockup";
 import { useAppSelector } from "@/lib/hooks";
-import { FeeSchedule } from "@/types/global";
 
 export default function LiveCalculator() {
   const fees = useAppSelector((state) => state.fees.fees);
@@ -31,7 +30,6 @@ export default function LiveCalculator() {
             onButtonClick={() => {
               window.open("https://app.vitalswap.com?r=TIMO8544", "_blank");
             }}
-            fees={fees}
             type="calculator"
           />
         </motion.div>
@@ -46,7 +44,6 @@ interface FeatureBlockProps {
   buttonText: string;
   imageLeft: boolean;
   onButtonClick?: () => void;
-  fees: FeeSchedule;
   type: "calculator" | "fx";
 }
 
@@ -56,7 +53,6 @@ function FeatureBlock({
   buttonText,
   imageLeft,
   onButtonClick,
-  fees,
   type,
 }: FeatureBlockProps) {
   return (
@@ -85,7 +81,7 @@ function FeatureBlock({
         {/* Image and Snippets */}
         <div className={`${imageLeft ? "lg:order-1" : "lg:order-2"} relative`}>
           <div className="relative w-full max-w-sm mx-auto">
-            {type === "calculator" && <CalculatorMockup fees={fees} />}
+            {type === "calculator" && <CalculatorMockup />}
           </div>
         </div>
       </div>

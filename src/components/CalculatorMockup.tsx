@@ -65,13 +65,9 @@ function detectCurrency(
 
 export default function CalculatorMockup() {
   const fees = useAppSelector((state) => state.fees.fees);
-
-  if (!fees) {
-    return null;
-  }
   const [product, setProduct] = useState<Product>("Customer");
   const categories = useMemo(
-    () => Object.keys(fees[product] ?? {}),
+    () => Object.keys(fees?.[product] ?? {}),
     [fees, product]
   );
   const [rawCategory, setRawCategory] = useState<string>("");
@@ -79,7 +75,7 @@ export default function CalculatorMockup() {
     ? rawCategory
     : categories[0] ?? "";
   const services: FeeItem[] = useMemo(
-    () => (category ? fees[product]?.[category] ?? [] : []),
+    () => (category ? fees?.[product]?.[category] ?? [] : []),
     [fees, product, category]
   );
   const [rawServiceName, setRawServiceName] = useState<string>("");
