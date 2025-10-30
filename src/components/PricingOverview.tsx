@@ -1,10 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FeeSchedule } from "@/types/global";
 import { Briefcase, User } from "lucide-react";
+import { useAppSelector } from "@/lib/hooks";
 
-export default function AccountTypesOverview({ fees }: { fees: FeeSchedule }) {
+export default function AccountTypesOverview() {
+  const fees = useAppSelector((state) => state.fees.fees);
+
+  if (!fees) {
+    return null;
+  }
+
   const customerCategories = Object.keys(fees["Customer"] ?? {});
   const businessCategories = Object.keys(fees["Business"] ?? {});
 

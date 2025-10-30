@@ -1,12 +1,15 @@
 "use client";
 
-import { FeeSchedule } from "@/types/global";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "@/lib/hooks";
 
-export default function ComparePlans({ fees }: { fees: FeeSchedule }) {
-  const products = Object.keys(fees) as Array<keyof typeof fees>;
-  const defaultProduct = products[0] ?? "Customer";
+export default function ComparePlans() {
+  const fees = useAppSelector((state) => state.fees.fees);
+
+  // Derive products safely even if fees not loaded yet
+  const products = Object.keys(fees ?? {}) as Array<keyof typeof fees>;
+  const defaultProduct = (products[0] as "Customer" | "Business") ?? "Customer";
 
   const getInitialProduct = (): "Customer" | "Business" => {
     if (typeof window !== "undefined") {
@@ -36,12 +39,12 @@ export default function ComparePlans({ fees }: { fees: FeeSchedule }) {
     history.replaceState(null, "", " ");
   };
 
-  const categories = Object.keys(fees[activeProduct] ?? {});
+  const categories = Object.keys(fees?.[activeProduct] ?? {});
   // Always use a valid category: current state if it's valid, otherwise first
   const currentCategory = categories.includes(activeCategory)
     ? activeCategory
     : categories[0] ?? "";
-  const selectedRows = fees[activeProduct]?.[currentCategory] || [];
+  const selectedRows = fees?.[activeProduct]?.[currentCategory] || [];
 
   return (
     <section id="compare-plans" className="py-12 sm:py-16 lg:py-20 bg-white">

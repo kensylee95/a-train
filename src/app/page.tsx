@@ -6,21 +6,20 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import PricingOverview from "@/components/PricingOverview";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import { getFees } from "@/lib/actions";
 import FXSimulator from "@/components/FXSimulator";
+import FeesLoader from "@/components/FeesLoader";
 
-export default async function Home() {
-  const fees = await getFees();
-
+export default function Home() {
   return (
     <main className="min-h-screen">
+      <FeesLoader />
       <Header />
       <HeroSection />
-      <PricingOverview fees={fees} />
-      <ComparePlans fees={fees} />
+      <PricingOverview />
+      <ComparePlans />
       <TestimonialsSection />
-      <LiveCalculator fees={fees} />
-      <FXSimulator initialRate={1445.62} />
+      <LiveCalculator />
+      <FXSimulator />
       <CallToAction />
       <Footer />
     </main>

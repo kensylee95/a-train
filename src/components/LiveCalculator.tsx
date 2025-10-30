@@ -1,10 +1,16 @@
 "use client";
 
-import { FeeSchedule } from "@/types/global";
 import { motion } from "framer-motion";
 import CalculatorMockup from "@/components/CalculatorMockup";
+import { useAppSelector } from "@/lib/hooks";
+import { FeeSchedule } from "@/types/global";
 
-export default function LiveCalculator({ fees }: { fees: FeeSchedule }) {
+export default function LiveCalculator() {
+  const fees = useAppSelector((state) => state.fees.fees);
+
+  if (!fees) {
+    return null;
+  }
   return (
     <section
       id="live-calculator"
