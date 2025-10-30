@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { FeeSchedule, FeeItem, Product } from "@/types/global";
+import { FeeItem, Product } from "@/types/global";
+import { useAppSelector } from "@/lib/hooks";
 
 type Currency = "USD" | "NGN";
 
@@ -62,7 +63,12 @@ function detectCurrency(
   return "USD";
 }
 
-export default function CalculatorMockup({ fees }: { fees: FeeSchedule }) {
+export default function CalculatorMockup() {
+  const fees = useAppSelector((state) => state.fees.fees);
+
+  if (!fees) {
+    return null;
+  }
   const [product, setProduct] = useState<Product>("Customer");
   const categories = useMemo(
     () => Object.keys(fees[product] ?? {}),

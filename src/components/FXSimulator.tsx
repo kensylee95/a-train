@@ -8,17 +8,13 @@ const CURRENCIES = [
   { code: "NGN", flag: "🇳🇬" },
 ];
 
-export default function FXSimulator({
-  initialRate = 1445.62,
-}: {
-  initialRate?: number;
-}) {
+export default function FXSimulator() {
   const [fromCur, setFromCur] = useState("USD");
   const [toCur, setToCur] = useState("NGN");
   const [fromAmount, setFromAmount] = useState("");
   const [toAmount, setToAmount] = useState("");
   const [activeField, setActiveField] = useState<"from" | "to">("from");
-  const [rate, setRate] = useState<number>(initialRate);
+  const [rate, setRate] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,7 +36,7 @@ export default function FXSimulator({
       setRate(Number(data.rate));
     } catch (e) {
       setError("Unable to fetch live FX rate. Showing last known rate.");
-      setRate(initialRate);
+      setRate(0);
     } finally {
       setLoading(false);
     }
