@@ -1,53 +1,95 @@
-# VitalSwap Fee Page
+# VitalSwap – Fee & FX Rate Simulator
 
-A responsive, interactive Fee Page for **VitalSwap** that helps users transparently understand fees, simulate swaps, and make informed decisions.
+VitalSwap is a modern web application that empowers users to understand, simulate, and compare real transaction fees and FX rates with total clarity.
 
----
+## Features
 
-## Overview
+- **Live Fee Schedule:**
 
-The Fee Page is designed to:
+  - Supports Customer and Business products, each with categorized services and detailed fee rules.
+  - Fetches live data from the backend using `/api/get-fees`; designed to proxy remote JSON for flexibility.
 
-- Clearly display **VitalSwap fees** for each product and user type.
-- Provide a **calculator** to simulate potential swap outcomes before transactions.
-- Be **intuitive, visually appealing, and technically robust**, combining frontend and backend functionality.
-- Reflect **good product thinking**, solving real customer problems in simple and meaningful ways.
+- **Transparent Calculators:**
 
----
+  - "Live Calculator" estimates fees for any product/service and displays applicable min/max, percentage, or fixed rates.
+  - FX Simulator enables real-time currency conversions (USD/NGN) with bidirectional calculations and latest rates.
 
-## Key Features
+- **Responsive UI, Modern Design:**
 
-1. **Fee Transparency**
-   - Displays detailed fees for all VitalSwap products.
-   - Shows user-specific fees for different account types.
+  - Built with Tailwind CSS, Framer Motion, Radix UI, and Lucide icons.
+  - Fully responsive, mobile-first layouts.
+  - Strong separation of server components (data-loading) and client (interactive) UI.
 
-2. **Swap Simulator / Calculator**
-   - Users can input values to estimate transaction fees.
-   - Includes a simulation of foreign exchange (FX) rates to understand cross-currency swaps.
-
-3. **Call-to-Action (CTA) Buttons**
-   - Multiple CTAs linked to each teammate’s **Swaptag (referral codes)** for seamless referrals.
-
-4. **Responsive and Interactive UI**
-   - Built with **ReactJS** for a smooth, mobile-friendly experience.
-   - Interactive components for real-time calculation feedback.
-
-5. **Brand Consistency**
-   - Incorporates **VitalSwap’s branding assets** to maintain trust and visual identity.
-
----
-
-## Tech Stack
-
-- **Frontend:** Next.Js
-- **Styling:**  CSS Modules
-- **Utilities:** FX rate API (for accurate swap simulations)
-
----
+- **Referrals & App Promo:**
+  - Seamless support for app store links and partner referral codes.
 
 ## Getting Started
 
-1. **Clone the repository**
+1. **Clone the Repository:**
+
 ```bash
-git clone https://github.com/kensylee95/a-train.git
+git clone <https://github.com/kensylee95/a-train.git>
 cd a-train
+```
+
+2. **Install Dependencies:**
+
+```bash
+npm install  # or yarn install
+```
+
+3. **Run the Development Server:**
+
+```bash
+npm run dev
+```
+
+4. **Open Locally:**
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+- `src/app/page.tsx` – Main entry, fetches fees server-side and renders all sections.
+- `src/app/api/get-fees/route.ts` – API endpoint; proxies remote fee data for the app.
+- `src/app/api/get-fx-rate/route.ts` – API endpoint; proxies live FX rates (USD/NGN, etc).
+- `src/components/FXSimulator.tsx` – Fully client-side FX calculator. Handles user input, swaps, and fetches rates live.
+- `src/components/LiveCalculator.tsx` – Interactive fee estimator for all service/product categories.
+- `src/components/ComparePlans.tsx`, `PricingOverview.tsx` – Visualizes all categories and fees with mobile/desktop UX.
+- `src/types/global.ts` – TypeScript interfaces for fee, FX, and referral data.
+- `src/lib/actions.ts` – (Server-side) data utilities for use in server components/pages.
+- `src/utils/helper.ts` – Parsing/calculation helpers for fee/FX string logic.
+
+## Key API Endpoints
+
+- **GET `/api/get-fees`**
+
+  - Returns: Full categorized fee JSON: `{ Customer: {...}, Business: {...} }`
+
+- **GET `/api/get-fx-rate?from=USD&to=NGN`**
+  - Returns: `{ from: "USD", to: "NGN", rate: <number> }`
+  - Swappable: supports `/USD/NGN`, `/NGN/USD`, `/USD/USD`, `/NGN/NGN`
+
+## Data Flow & Patterns
+
+- Server page fetches core fee schedule using server action, passes as prop to all relevant UI sections.
+- All live/interactive fetching (especially FX rates) is done **purely client-side**, so SSR stays robust.
+- Fee and FX string rules are parsed and computed centrally via `helper.ts`, ensuring DRY logic and maximum accuracy.
+
+## Tech Stack
+
+- Next.js 13+
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- @radix-ui
+- lucide-react icons
+
+## Contact & Support
+
+Need help or want to contribute? Join our team or open an issue!
+
+---
+
+VitalSwap Payment Technologies, Inc.
+
+Security note: No sensitive data is ever persisted nor logged from user input in this demo app.

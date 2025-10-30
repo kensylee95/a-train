@@ -69,6 +69,21 @@ export default function TestimonialsSection() {
                   </div>
                 </div>
               </div>
+              {/* Add 5 yellow stars above the quote */}
+              <div className="flex mb-2" aria-label="5 star rating">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    aria-hidden="true"
+                    className="w-5 h-5 text-yellow-400 inline-block mr-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <title>Star</title>
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.96a1 1 0 00.95.69h4.175c.969 0 1.372 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.286 3.96c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.539-1.118l1.285-3.96a1 1 0 00-.364-1.118L2.049 9.388c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.96z" />
+                  </svg>
+                ))}
+              </div>
               <p className="text-vital-dark-gray italic font-poppins">
                 {testimonial.quote}
               </p>
