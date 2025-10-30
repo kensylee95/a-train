@@ -26,7 +26,13 @@ export const fetchFees = createAsyncThunk("fees/fetchFees", async () => {
 const feesSlice = createSlice({
   name: "fees",
   initialState,
-  reducers: {},
+  reducers: {
+    setFees(state, action: PayloadAction<FeeSchedule | null>) {
+      state.fees = action.payload;
+      state.error = null;
+      state.loading = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchFees.pending, (state) => {
@@ -48,4 +54,5 @@ const feesSlice = createSlice({
   },
 });
 
+export const { setFees } = feesSlice.actions;
 export default feesSlice.reducer;
