@@ -1,9 +1,25 @@
 "use client";
 
-import svgPaths from "@libs/svgPaths";
 import { motion } from "framer-motion";
+import { FeeSchedule } from "@/types/global";
+import { Briefcase, User } from "lucide-react";
 
-export default function PricingOverview() {
+export default function AccountTypesOverview({ fees }: { fees: FeeSchedule }) {
+  const customerCategories = Object.keys(fees["Customer"] ?? {});
+  const businessCategories = Object.keys(fees["Business"] ?? {});
+
+  const handleViewFees = (mode: "Customer" | "Business") => {
+    // update hash first
+    window.location.hash =
+      mode === "Customer" ? "#fees-customer" : "#fees-business";
+
+    // then scroll smoothly
+    const section = document.querySelector("#compare-plans");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,89 +31,42 @@ export default function PricingOverview() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl font-bold text-vital-dark-gray mb-4 font-gilroy">
-            Pricing Overview
+            Account Types
           </h2>
           <p className="text-xl text-vital-gray font-poppins">
-            Choose the plan that best fits your needs.
+            See the main features and services available to each account type
+            below.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <PlanCard
-              left={40}
-              title="Basic"
-              price="₦5,000"
-              period="per month"
-              subtitle="For individuals"
-              bgColor="rgba(37,70,126,0.09)"
-              buttonText="Select Basic"
-              buttonVariant="outlined"
-              features={[
-                "0.5% Swap Fee",
-                "1% FX Conversion Margin",
-                "No Transfer Fee",
-                "Basic Support",
-                "Limited Swaps",
-              ]}
+            <AccountTypeCard
+              icon={<User className="w-12 h-12 text-vital-blue" />}
+              title="Customer"
+              highlights={customerCategories}
+              buttonLabel="View Customer Fees"
+              onClick={() => handleViewFees("Customer")}
             />
           </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
           >
-            <PlanCard
-              left={530}
-              title="Pro"
-              price="₦15,000"
-              period="per month"
-              subtitle="For professionals"
-              bgColor="rgba(0,64,173,0.16)"
-              buttonText="Start with Plus"
-              buttonVariant="filled"
-              borderColor="#001f54"
-              titleColor="#001f54"
-              priceColor="#001f54"
-              subtitleColor="#1b1f28"
-              features={[
-                "0.3% Swap Fee",
-                "0.5% FX Conversion Margin",
-                "No Transfer Fee",
-                "Priority Support",
-                "Unlimited Swaps",
-              ]}
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <PlanCard
-              left={1020}
+            <AccountTypeCard
+              icon={<Briefcase className="w-12 h-12 text-vital-yellow" />}
               title="Business"
-              price="₦30,000"
-              period="per month"
-              subtitle="For enterprises"
-              bgColor="rgba(37,70,126,0.09)"
-              buttonText="Select Business"
-              buttonVariant="outlined"
-              features={[
-                "0.1% Swap Fee",
-                "0.2% FX Conversion Margin",
-                "No Transfer Fee",
-                "Dedicated Support",
-                "Custom Solutions",
-              ]}
+              highlights={businessCategories}
+              buttonLabel="View Business Fees"
+              onClick={() => handleViewFees("Business")}
             />
           </motion.div>
         </div>
@@ -106,173 +75,59 @@ export default function PricingOverview() {
   );
 }
 
-interface PlanCardProps {
-  left: number;
-  title: string;
-  price: string;
-  period: string;
-  subtitle: string;
-  bgColor: string;
-  buttonText: string;
-  buttonVariant: "outlined" | "filled";
-  borderColor?: string;
-  titleColor?: string;
-  priceColor?: string;
-  subtitleColor?: string;
-  features: string[];
-}
-
-function PlanCard({
-  left,
+function AccountTypeCard({
+  icon,
   title,
-  price,
-  period,
-  subtitle,
-  bgColor,
-  buttonText,
-  buttonVariant,
-  borderColor,
-  titleColor = "#1b1f28",
-  priceColor = "#1b1f28",
-  subtitleColor = "rgba(20,30,46,0.62)",
-  features,
-}: PlanCardProps) {
-  return (
-    <div
-      className=" h-[468px] rounded-[20px]"
-      style={{
-        left: `${left}px`,
-        backgroundColor: bgColor,
-        border: borderColor ? `1.5px solid ${borderColor}` : "none",
-      }}
-    >
-      <div className="h-[468px] overflow-clip relative rounded-[inherit]">
-        <div className="absolute h-[124px] left-[32px] not-italic text-nowrap top-[32px] w-[336px] whitespace-pre">
-          <p
-            className="absolute font-poppins font-semibold leading-[24px] left-0 text-[17px] top-[2px] tracking-[-0.085px]"
-            style={{ color: titleColor }}
-          >
-            {title}
-          </p>
-          <div className="absolute h-[52px] left-0 top-[40px]">
-            <p
-              className="absolute font-poppins font-semibold leading-[52px] left-0 text-[48px] top-0 tracking-[-1.2px]"
-              style={{ color: priceColor }}
-            >
-              {price}
-            </p>
-            <p
-              className="absolute font-poppins font-regular leading-[24px] text-[20px] top-[24px] tracking-[-0.1px]"
-              style={{
-                color: priceColor,
-                left:
-                  price === "₦5,000"
-                    ? "155px"
-                    : price === "₦15,000"
-                    ? "180px"
-                    : "180px",
-              }}
-            >
-              {period}
-            </p>
-          </div>
-          <p
-            className="absolute font-poppins font-regular leading-[16px] left-0 text-[13px] top-[108px] tracking-[-0.065px]"
-            style={{ color: subtitleColor }}
-          >
-            {subtitle}
-          </p>
-        </div>
-
-        <div className="absolute left-[32px] right-[32px] top-[188px]">
-          {buttonVariant === "outlined" ? (
-            <button className="w-full h-[40px] rounded-[16px] border-[1.5px] border-[rgba(73,87,110,0.2)] border-solid bg-transparent flex items-center justify-center">
-              <span className="font-poppins font-medium text-[15px] text-[#1b1f28]">
-                {buttonText}
-              </span>
-            </button>
-          ) : (
-            <button className="w-full h-[40px] rounded-[16px] bg-vital-blue hover:bg-vital-blue-hover transition-colors flex items-center justify-center">
-              <span className="font-poppins font-medium text-[15px] text-[#fafcff]">
-                {buttonText}
-              </span>
-            </button>
-          )}
-        </div>
-
-        <div className="absolute h-0 left-[32px] top-[260px] w-[336px]">
-          <div className="absolute bottom-[-0.75px] left-0 right-0 top-[-0.75px]">
-            <svg
-              className="block size-full"
-              fill="none"
-              preserveAspectRatio="none"
-              viewBox="0 0 336 2"
-            >
-              <path
-                d="M0 0.75H336"
-                stroke="var(--stroke-0, #49576E)"
-                strokeOpacity="0.2"
-                strokeWidth="1.5"
-              />
-            </svg>
-          </div>
-        </div>
-
-        <div className="absolute h-[144px] left-[32px] top-[292px] w-[336px]">
-          {features.map((feature, index) => (
-            <FeatureItem
-              key={index}
-              text={feature}
-              top={index * 30}
-              textColor={
-                buttonVariant === "filled" ? "#1b1f28" : "rgba(20,30,46,0.62)"
-              }
-            />
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function FeatureItem({
-  text,
-  top,
-  textColor,
+  highlights,
+  buttonLabel,
+  onClick,
 }: {
-  text: string;
-  top: number;
-  textColor: string;
+  icon: React.ReactNode;
+  title: string;
+  highlights: string[];
+  buttonLabel: string;
+  onClick: () => void;
 }) {
   return (
-    <div
-      className="absolute h-[24px] left-0 w-[336px]"
-      style={{ top: `${top}px` }}
-    >
-      <div className="absolute left-0 size-[24px] top-0">
-        <svg
-          className="block size-full"
-          fill="none"
-          preserveAspectRatio="none"
-          viewBox="0 0 24 24"
-        >
-          <g>
-            <path
-              d={svgPaths.pe247580}
-              stroke="var(--stroke-0, #1B1F28)"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-            />
-          </g>
-        </svg>
+    <div className="h-[390px] rounded-[20px] bg-white shadow border p-8 flex flex-col gap-7 items-stretch relative">
+      <div className="flex items-center gap-4 mb-5">
+        {icon}
+        <span className="text-2xl font-bold text-vital-dark-gray font-gilroy">
+          {title}
+        </span>
       </div>
-      <p
-        className="absolute font-['Poppins:Regular',sans-serif] leading-[16px] left-[32px] not-italic text-[13px] text-nowrap top-[4px] tracking-[-0.065px] whitespace-pre"
-        style={{ color: textColor }}
-      >
-        {text}
-      </p>
+      <ul className="space-y-3 flex-1">
+        {highlights.map((h, i) => (
+          <li
+            key={i}
+            className="flex items-center text-vital-dark-gray text-base font-poppins"
+          >
+            <svg
+              className="w-5 h-5 text-vital-blue mr-2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            {h}
+          </li>
+        ))}
+      </ul>
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={onClick}
+          className="px-6 py-2 rounded-full bg-vital-blue text-white font-semibold font-poppins text-base shadow transition hover:bg-vital-blue-hover"
+        >
+          {buttonLabel}
+        </button>
+      </div>
     </div>
   );
 }

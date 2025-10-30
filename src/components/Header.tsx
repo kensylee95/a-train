@@ -1,9 +1,18 @@
 "use client";
 
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "./ui/button";
+
+const navigation = [
+  { name: "How it works", href: "https://blog.vitalswap.com/how-it-works" },
+  { name: "Our Rates", href: "https://blog.vitalswap.com/vitalswap-rate/" },
+  { name: "Blog", href: "https://blog.vitalswap.com/" },
+  { name: "FAQ", href: "https://blog.vitalswap.com/faq/" },
+  { name: "Contact Us", href: "https://vitalswap.com/#contact" },
+];
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,32 +38,34 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
-            <div className="flex items-center space-x-1 text-vital-gray hover:text-vital-blue cursor-pointer">
-              <span>Home</span>
-              <ChevronDown className="w-4 h-4" />
-            </div>
-            <div className="flex items-center space-x-1 text-vital-gray hover:text-vital-blue cursor-pointer">
-              <span>Features</span>
-              <ChevronDown className="w-4 h-4" />
-            </div>
-            <div className="flex items-center space-x-1 text-vital-gray hover:text-vital-blue cursor-pointer">
-              <span>Pricing</span>
-              <ChevronDown className="w-4 h-4" />
-            </div>
-            <div className="flex items-center space-x-1 text-vital-gray hover:text-vital-blue cursor-pointer">
-              <span>Contact</span>
-              <ChevronDown className="w-4 h-4" />
-            </div>
+            {navigation.map((item) => (
+              <div
+                className="flex items-center space-x-1 text-vital-gray hover:text-vital-blue cursor-pointer"
+                key={item.name}
+              >
+                <a
+                  className="text-lg font-medium"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.name}
+                </a>
+              </div>
+            ))}
           </nav>
 
           {/* Desktop Action Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="text-vital-gray hover:text-vital-blue">
-              Log in
-            </button>
-            <button className="bg-vital-blue text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors font-poppins">
+            <Button
+              variant="default"
+              size="lg"
+              onClick={() =>
+                window.open("https://app.vitalswap.com?r=BETA2773", "_blank")
+              }
+            >
               Download App
-            </button>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -129,22 +140,21 @@ export default function Header() {
                 {/* Navigation */}
                 <nav className="flex-1 px-4 py-6">
                   <div className="space-y-6">
-                    <div className="flex items-center justify-between text-vital-gray hover:text-vital-blue cursor-pointer py-3 border-b border-gray-100">
-                      <span className="text-lg font-medium">Home</span>
-                      <ChevronDown className="w-5 h-5" />
-                    </div>
-                    <div className="flex items-center justify-between text-vital-gray hover:text-vital-blue cursor-pointer py-3 border-b border-gray-100">
-                      <span className="text-lg font-medium">Features</span>
-                      <ChevronDown className="w-5 h-5" />
-                    </div>
-                    <div className="flex items-center justify-between text-vital-gray hover:text-vital-blue cursor-pointer py-3 border-b border-gray-100">
-                      <span className="text-lg font-medium">Pricing</span>
-                      <ChevronDown className="w-5 h-5" />
-                    </div>
-                    <div className="flex items-center justify-between text-vital-gray hover:text-vital-blue cursor-pointer py-3 border-b border-gray-100">
-                      <span className="text-lg font-medium">Contact</span>
-                      <ChevronDown className="w-5 h-5" />
-                    </div>
+                    {navigation.map((item) => (
+                      <div
+                        className="flex items-center justify-between text-vital-gray hover:text-vital-blue cursor-pointer py-3 border-b border-gray-100"
+                        key={item.name}
+                      >
+                        <a
+                          className="text-lg font-medium"
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.name}
+                        </a>
+                      </div>
+                    ))}
                   </div>
                 </nav>
 
@@ -153,9 +163,17 @@ export default function Header() {
                   <button className="w-full text-left text-vital-gray hover:text-vital-blue py-3 text-lg font-medium">
                     Log in
                   </button>
-                  <button className="w-full bg-vital-blue text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors font-poppins text-lg font-medium">
+                  <Button
+                    onClick={() =>
+                      window.open(
+                        "https://app.vitalswap.com?r=BETA2773",
+                        "_blank"
+                      )
+                    }
+                    className="w-full button-main"
+                  >
                     Download App
-                  </button>
+                  </Button>
                 </div>
               </div>
             </motion.div>

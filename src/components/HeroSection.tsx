@@ -1,6 +1,6 @@
 "use client";
 
-import svgPaths from "@libs/svgPaths";
+import svgPaths from "@/utils/svgPaths";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -47,21 +47,39 @@ export default function HeroSection() {
             >
               We keep our fees simple, clear, and easy to understand.
             </motion.p>
-            <motion.button
-              className="bg-vital-yellow text-vital-dark-gray px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-400 transition-colors font-poppins"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Try for free
-            </motion.button>
+            <div className="flex items-center space-x-4">
+              <motion.button
+                className="button-main px-8 py-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  window.open("https://app.vitalswap.com?r=TIMO8544", "_blank");
+                }}
+              >
+                Get a business account
+              </motion.button>
+              <motion.button
+                className="button-main px-8 py-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  window.open("https://app.vitalswap.com?r=KING3750", "_blank");
+                }}
+              >
+                Get a personal account
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Right Content - Woman with Smartphone */}
           <motion.div
-            className="relative hidden sm:flex items-end justify-start lg:justify-start mt-10"
+            className="relative flex items-end justify-start lg:justify-start mt-10"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
